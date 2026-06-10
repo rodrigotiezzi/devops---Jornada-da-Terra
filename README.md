@@ -6,8 +6,8 @@
 ---
 
 ## 🏗️ Arquitetura Macro
+<img width="1649" height="499" alt="image" src="https://github.com/user-attachments/assets/a9160ba6-554c-41f7-a748-fa404e37c573" />
 
-<img width="1919" height="607" alt="image" src="https://github.com/user-attachments/assets/4c7e9049-2551-43a9-9a39-7778209fa729" />
 
 ```
 
