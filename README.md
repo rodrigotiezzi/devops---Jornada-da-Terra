@@ -30,19 +30,9 @@ No terminal local, rode o comando abaixo para criar o grupo de recursos e a VM:
 az group create --name rg-jornadadaterra --location canadacentral && az vm create --resource-group rg-jornadadaterra --name vm-jornadadaterra --location canadacentral --image Canonical:0001-com-ubuntu-server-jammy:22_04-lts:latest --size Standard_D2s_v4 --vnet-name vnet-linux --nsg nsgsr-linux --authentication-type password --admin-username admrodrigo --admin-password Manurodrigo2025%
 ```
 
-Aguarde terminar e anote o IP público exibido no final.
+Aguarde terminar.
 
----
-
-### Passo 2 — Conectar na VM via SSH
-
-```bash
-ssh admrodrigo@<IP_DA_VM>
-```
-
----
-
-### Passo 3 — Criar o script de configuração da VM
+### Passo 2 — Criar o script de configuração da VM
 
 Dentro da VM, crie o arquivo:
 
@@ -165,7 +155,7 @@ chmod 755 dependencias.sh
 
 ---
 
-### Passo 4 — Verificar os containers rodando
+### Passo 3 — Verificar os containers rodando
 
 ```bash
 sudo docker ps
@@ -181,7 +171,7 @@ rm562975-db      Up X minutes    0.0.0.0:1521->1521/tcp
 
 ---
 
-### Passo 5 — Acessar o Swagger
+### Passo 4 — Acessar o Swagger
 
 Abra no navegador:
 
@@ -191,7 +181,7 @@ http://<IP_DA_VM>:8080
 
 ---
 
-### Passo 6 — Testar o CRUD pelo Swagger
+### Passo 5 — Testar o CRUD pelo Swagger
 
 Acesse `http://<IP_DA_VM>:8080` e siga o fluxo na ordem abaixo:
 
