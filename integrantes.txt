@@ -1,0 +1,10 @@
+GLOBAL SOLUTION 2026/1 - Advanced Business Development with .NET
+Projeto: Jornada da Terra (Agro & Clima Gamificado)
+Turma: 2TDSPO
+
+Integrantes:
+- PEDRO PEREIRA BIASOLLI  - RM562521 - 2TDSPO
+- RODRIGO TIEZZI          - RM562975 - 2TDSPO
+- BRUNO ZANATELI          - RM563736 - 2TDSPO
+- CHRISTIAN FREITAS       - RM566098 - 2TDSPO
+- MATHEUS ENRICO          - RM562532 - 2TDSPO

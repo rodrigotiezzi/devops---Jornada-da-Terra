@@ -1,0 +1,37 @@
+## .NET / Visual Studio
+bin/
+obj/
+out/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]uild/
+[Bb]in/
+[Oo]bj/
+
+## Rider / VS Code
+.idea/
+.vscode/
+
+## Test results / coverage
+[Tt]est[Rr]esult*/
+*.coverage
+*.coveragexml
+coverage/
+
+## User-specific / secrets
+appsettings.*.local.json
+secrets.json
+*.env
+
+## OS
+.DS_Store
+Thumbs.db

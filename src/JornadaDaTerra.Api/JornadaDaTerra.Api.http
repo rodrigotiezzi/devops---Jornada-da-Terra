@@ -1,0 +1,89 @@
+### Jornada da Terra API — exemplos de teste das rotas
+### Use o "Send Request" do Visual Studio / VS Code (extensão REST Client).
+@host = https://localhost:7140
+
+### 1) Criar um produtor
+POST {{host}}/api/produtores
+Content-Type: application/json
+
+{
+  "nome": "Maria Oliveira",
+  "email": "maria.oliveira@fazenda.com.br"
+}
+
+### 2) Listar produtores (paginado)
+GET {{host}}/api/produtores?pagina=1&tamanhoPagina=20
+
+### 3) Obter produtor por Id
+GET {{host}}/api/produtores/1
+
+### 4) Criar uma fazenda para o produtor 1
+POST {{host}}/api/fazendas
+Content-Type: application/json
+
+{
+  "nome": "Fazenda Santa Luzia",
+  "municipio": "Uberaba",
+  "estado": "MG",
+  "areaHectares": 540,
+  "latitude": -19.748,
+  "longitude": -47.931,
+  "produtorId": 1
+}
+
+### 5) Criar um setor na fazenda 1
+POST {{host}}/api/setores
+Content-Type: application/json
+
+{
+  "nome": "Setor Leste",
+  "cultura": "Café",
+  "areaHectares": 80,
+  "fazendaId": 1
+}
+
+### 6) Registrar leitura de satélite (GEADA -> gera missão automática)
+POST {{host}}/api/leituras-satelite
+Content-Type: application/json
+
+{
+  "setorId": 1,
+  "temperaturaC": -2.0,
+  "umidadeRelativa": 90,
+  "ndvi": 0.6,
+  "precipitacaoMm": 0
+}
+
+### 7) Listar missões pendentes do setor 1
+GET {{host}}/api/missoes?setorId=1&status=Pendente
+
+### 8) Iniciar uma missão (Pendente -> EmProgresso)
+PATCH {{host}}/api/missoes/1/status
+Content-Type: application/json
+
+{
+  "status": "EmProgresso"
+}
+
+### 9) Concluir a missão (credita pontos ao produtor)
+PATCH {{host}}/api/missoes/1/status
+Content-Type: application/json
+
+{
+  "status": "Concluida"
+}
+
+### 10) Conferir os pontos/nível do produtor após concluir a missão
+GET {{host}}/api/produtores/1
+
+### 11) Exemplo de ENTRADA INVÁLIDA (deve retornar 400 com erros de validação)
+POST {{host}}/api/produtores
+Content-Type: application/json
+
+{
+  "nome": "",
+  "email": "email-invalido"
+}
+
+### 12) Exemplo de NÃO ENCONTRADO (deve retornar 404)
+GET {{host}}/api/produtores/9999

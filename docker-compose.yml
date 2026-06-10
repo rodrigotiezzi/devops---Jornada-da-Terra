@@ -1,0 +1,60 @@
+version: '3.8'
+
+# ============================================================
+# Jornada da Terra — Docker Compose
+# RM562975
+# 2 containers: API .NET 8 + Oracle XE
+# ============================================================
+
+services:
+
+  # ── BANCO ORACLE XE ───────────────────────────────────────
+  db:
+    image: gvenzl/oracle-xe:21-slim
+    container_name: rm562975-db
+    ports:
+      - "1521:1521"   # porta exposta para acesso externo (critério 2.2)
+    environment:
+      - ORACLE_PASSWORD=080606
+      - APP_USER=rm562975
+      - APP_USER_PASSWORD=080606
+    volumes:
+      - oracle_data:/opt/oracle/oradata   # volume nomeado (critério 2.2)
+    networks:
+      - jornada-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "healthcheck.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 20
+      start_period: 180s
+
+  # ── API .NET 8 ────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rm562975-api
+    ports:
+      - "8080:8080"   # porta exposta (critério 2.1)
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__OracleConnection=User Id=rm562975;Password=080606;Data Source=rm562975-db:1521/XEPDB1;
+    networks:
+      - jornada-net
+    restart: unless-stopped
+
+# ── VOLUME NOMEADO (critério 2.2) ───────────────────────────
+volumes:
+  oracle_data:
+    name: jornada_oracle_data
+
+# ── REDE COMPARTILHADA (critério 2.1 e 2.2) ─────────────────
+networks:
+  jornada-net:
+    driver: bridge
