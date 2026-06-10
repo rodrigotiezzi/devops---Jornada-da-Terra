@@ -7,25 +7,8 @@
 
 ## 🏗️ Arquitetura Macro
 
-```
-┌─────────────────────────────────────────────────────┐
-│                    VM Azure (canadacentral)          │
-│                                                     │
-│   ┌─────────────────┐      ┌─────────────────────┐  │
-│   │  rm562975-api   │      │   rm562975-db       │  │
-│   │  (.NET 8 API)   │─────▶│   (Oracle XE 21c)   │  │
-│   │  porta: 8080    │      │   porta: 1521        │  │
-│   └─────────────────┘      └─────────────────────┘  │
-│          │                          │                │
-│          └──────── jornada-net ─────┘                │
-│                    (bridge network)                  │
-│                                                     │
-│                  Volume: jornada_oracle_data         │
-└─────────────────────────────────────────────────────┘
-         ▲
-         │ HTTP :8080
-         │
-   👤 Usuário / Swagger
+<img width="1919" height="607" alt="image" src="https://github.com/user-attachments/assets/4c7e9049-2551-43a9-9a39-7778209fa729" />
+
 ```
 
 ---
